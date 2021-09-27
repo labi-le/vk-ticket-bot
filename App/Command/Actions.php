@@ -10,8 +10,6 @@ use Astaroth\Attribute\Event\MessageNew;
 use Astaroth\Commands\BaseCommands;
 use Astaroth\DataFetcher\Events\MessageNew as Data;
 use Astaroth\Support\Facades\Request;
-use Astaroth\Support\Facades\Upload;
-use Astaroth\VkUtils\Builders\Attachments\Message\PhotoMessages;
 
 #[Conversation(Conversation::CHAT)]
 #[MessageNew]
@@ -45,7 +43,7 @@ class Actions extends BaseCommands
         $memberId = $data->getAction()->member_id ?? null;
         if (-$botId === $memberId) {
             $message = "♂ Dungeon Ticket Master ♂ приветствует тебя ♂ slave-нёнок ♂ \n\n♂ Master ♂ ждёт доступ к переписке и ♂ three hundred bucks ♂";
-            $attachments = "doc259166248_570145956_fc7995fc04e39c3fd7";
+            $attachments[] = "doc259166248_570145956_fc7995fc04e39c3fd7";
         } else {
             $messages =
                 [
@@ -55,12 +53,8 @@ class Actions extends BaseCommands
                 ];
 
             $message = $messages[array_rand($messages)];
-            $attachments = "https://icdn.lenta.ru/images/2021/01/29/17/20210129175240891/pwa_vertical_1280_4b574e2c237682f3a16e2c0c3cd7a878.jpg";
+            $attachments[] = "photo-190405359_457242070_caa05edd978ea30f9c";
         }
-
-        $attachments = filter_var($attachments, FILTER_VALIDATE_URL) ? Upload::attachments(
-            new PhotoMessages($attachments)
-        ) : [$attachments];
 
         $this->message(
             $data->getPeerId(),
