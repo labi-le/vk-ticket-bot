@@ -45,7 +45,7 @@ class TicketCloser extends BaseCommands
         $sarcasm = [
             "Тикет закрыт", "В данной ситуации я могу только закрыть тикет",
             "Я закрываю тикет", "Тикет закрыт по причине гомосексуальности автора", "Ну нихуя себе, тикет закрыт",
-            "/ticket_closed", "Ну и что это за вопрос?\nТикет закрыт!"
+            "/ticket_closed", "Ну и что это за вопрос? Тикет закрыт"
         ];
         $this->message($data->getPeerId(), $sarcasm[array_rand($sarcasm)]);
     }
