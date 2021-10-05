@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Astaroth\Foundation\Application;
 
 $app = new Application();
